@@ -19,3 +19,21 @@ This only affect pods created after the limit range is created or update
 ### Static PODs
 The default path is /etc/kubernetes/manifests but it can be modified
 check the file /var/lib/kubelet/config.yaml to know where static will be loaded
+
+### Rollout Rollbacks
+
+Deployment Strategy
+
+- Rolling update (default): k8s replace one pod at the time, when new version is running, the old one is killed. There is another specifications that can affect this, like **maxSurge** and **maxUnavailable**
+
+- Recreate: All the old version pods will go down and then the new version is deployed. In this process the application become unaveilable.
+
+
+To rollback run the command
+
+```
+kubectl rollout undo deployment/app-deployment
+
+```
+
+
